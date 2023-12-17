@@ -226,12 +226,14 @@ int main()
 		case MENU_AVERAGE:
 			if (!student)
 				cout << "NO details were added" << endl;
+
+			cout << "ahiiiiiiiiii";
 			else
 				cout << "The average grade of " << student->getCrsCount() << " courses is: " << student->getAvg() << endl << endl;
 			break;
 		case MENU_PRINT_COURSES:
 			if (!student)
-				cout << "NO details were added" << endl;
+				cout << "NOthing  were added" << endl;
 			else
 			{
 				cout << "Courses list for student " << student->getName() << endl;
