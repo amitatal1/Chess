@@ -9,6 +9,7 @@
 #define MENU_AVERAGE 2
 #define MENU_PRINT_COURSES 3
 #define MENU_EXIT 4
+#define VERY_MAGNIVOOL Amit
 
 using namespace std;
 
