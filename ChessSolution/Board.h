@@ -22,6 +22,7 @@ private:
 public:
 	Board();
 	~Board();
+	Piece* (*getBoard())[BOARD_DIMENSION][BOARD_DIMENSION]; // getter function for board array
 
 };
 

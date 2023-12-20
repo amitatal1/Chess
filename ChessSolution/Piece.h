@@ -1,6 +1,9 @@
 #pragma once
 #include "Board.h"
 
+#define BLACK false
+#define WHITE true
+
 
 class Piece
 {
@@ -14,13 +17,14 @@ protected:
 
 	Board* _board;
 public:
-	Piece(int x, int y, Board* board, bool color, char type);
+	Piece(char type, bool color, int x, int y, Board* board);
+	virtual ~Piece();
 	int getX() const;
 	int getY() const;
 
 	bool getColor() const;
 	char getType() const;
-	virtual bool IsMovePossible() =0 ; // checks if certain piece is able to go to move to a specific position 
+	virtual bool IsMovePossible(int x, int y) =0 ; // checks if certain piece is able to go to move to a specific position 
 	virtual bool move(int x, int y) =0 ; // changing the board 
 	virtual bool hit(int x, int y)=0; // removing another piece from the board by hitting it
 

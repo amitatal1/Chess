@@ -1,7 +1,11 @@
 #include "Piece.h"
 
-Piece::Piece(int x, int y, Board* board, bool color, char type)
+Piece::Piece(char type, bool color,int x, int y,Board* board)
     : _x(x), _y(y), _board(board), _color(color), _type(type)
+{
+}
+
+Piece::~Piece()
 {
 }
 
