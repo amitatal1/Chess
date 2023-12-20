@@ -1,6 +1,6 @@
 #include "Pawn.h"
 
-Pawn::Pawn(char type, bool color, int x, int y, Board* board)
+Pawn::Pawn(char type, bool color, int x, int y, Board& board)
 	:Piece(type, color, x,y,board)
 {
 }
@@ -52,24 +52,6 @@ bool Pawn::IsMovePossible(int x,int y)
 	}
 
 
-bool Pawn::move(int x, int y)
-{
-    if (IsMovePossible(x, y))
-    {
-        if (_board[x][y] != nullptr) //hit
-        {
-            delete(_board[_x][_y]);
-        }
-        
-       
-        _board[_x][_y] = nullptr;
-           
-        _board[x][y] = this;
-        _x = x;
-        _y = y;
-        return true;
-    }
-    return false;
-}
+
 
 

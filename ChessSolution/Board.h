@@ -13,6 +13,14 @@
 #define G 6
 #define H 7
 
+#define PAWN 'p'
+#define KNIGHT 'n'
+#define QUEEN 'q'
+#define ROOK 'r'
+#define KING 'k'
+#define BISHOP 'b'
+
+
 using std::string;
 # define BOARD_DIMENSION 8 
 

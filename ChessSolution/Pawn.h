@@ -4,11 +4,9 @@ class Pawn :
     public Piece
 {
 public:
-    Pawn(char type, bool color, int x, int y, Board* board);
+    Pawn(char type, bool color, int x, int y, Board& board);
     ~Pawn();
 
     virtual bool IsMovePossible(int x, int y) override; // checks if certain piece is able to go to move to a specific position 
-    virtual bool move(int x, int y) override; // changing the board 
-    virtual bool hit(int x, int y) override;
 };
 
