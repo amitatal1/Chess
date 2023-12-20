@@ -12,8 +12,18 @@ Board::Board()
 	}
 }
 
-Piece* (*Board::getBoard())[BOARD_DIMENSION][BOARD_DIMENSION]
+
+
+Piece** Board::operator[](int index)
 {
-	return &_board;
+	return  _board[index];
+}
+
+string Board::toString() const
+{
+	for (int row = 0; row < BOARD_DIMENSION; row++)
+	{
+
+	}
 }
 

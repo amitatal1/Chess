@@ -1,6 +1,9 @@
 #pragma once
 #include "Piece.h"
 #include "Pawn.h"
+
+#include <string>
+
 #define A 0
 #define B 1
 #define C 2
@@ -10,7 +13,12 @@
 #define G 6
 #define H 7
 
+using std::string;
 # define BOARD_DIMENSION 8 
+
+
+class Piece;
+
 class Board
 {
 private:
@@ -22,7 +30,8 @@ private:
 public:
 	Board();
 	~Board();
-	Piece* (*getBoard())[BOARD_DIMENSION][BOARD_DIMENSION]; // getter function for board array
-
+	Piece** operator[](int index); // acting as getter to the function
+	string toString() const;
+	
 };
 

@@ -4,6 +4,7 @@
 #define BLACK false
 #define WHITE true
 
+class Board;
 
 class Piece
 {
@@ -15,9 +16,9 @@ protected:
 	int _x;
 	int _y;
 
-	Board* _board;
+	Board& _board;
 public:
-	Piece(char type, bool color, int x, int y, Board* board);
+	Piece(char type, bool color, int x, int y, Board& board);
 	virtual ~Piece();
 	int getX() const;
 	int getY() const;
@@ -26,7 +27,6 @@ public:
 	char getType() const;
 	virtual bool IsMovePossible(int x, int y) =0 ; // checks if certain piece is able to go to move to a specific position 
 	virtual bool move(int x, int y) =0 ; // changing the board 
-	virtual bool hit(int x, int y)=0; // removing another piece from the board by hitting it
 
 
 
