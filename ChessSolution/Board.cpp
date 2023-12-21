@@ -28,13 +28,21 @@ string Board::toString() const
 	{	
 		for (int col = A; col < BOARD_DIMENSION; col++)
 		{
-			if (_board[row][col]->getColor() == BLACK)
+			if (_board[row][col] != nullptr)
 			{
-				boardString += toupper(_board[row][col]->getType()) + " ";
+				if (_board[row][col]->getColor() == BLACK)
+				{
+					boardString += toupper(_board[row][col]->getType()) + " ";
+				}
+					
+				else
+				{
+					boardString += _board[row][col]->getType() + " ";
+				}
 			}
 			else
 			{
-				boardString += _board[row][col]->getType() + " ";
+				boardString +=   "0 ";
 			}
 		}
 		boardString += "\n";
