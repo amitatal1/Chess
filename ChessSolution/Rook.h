@@ -6,6 +6,6 @@ class Rook :
 public:
     Rook(char type, bool color, int x, int y, Board& board);
     ~Rook();
-    virtual bool IsMovePossible(int x, int y) const override; // checks if certain piece is able to go to move to a specific position 
+    virtual bool IsMovePossible(int x, int y,bool threatSearch = false) const override; // checks if certain piece is able to go to move to a specific position 
 };
 

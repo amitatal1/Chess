@@ -9,7 +9,9 @@ Rook::~Rook()
 {
 }
 
-bool Rook::IsMovePossible(int x, int y) const
+
+
+bool Rook::IsMovePossible(int x, int y, bool threatSearch = false) const
 {
     if (x < 0 || y < 0 || x >= BOARD_DIMENSION || y >= BOARD_DIMENSION) // out of bounds 
     {

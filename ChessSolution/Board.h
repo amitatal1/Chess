@@ -45,7 +45,11 @@ public:
 	~Board();
 	Piece** operator[](int index); // acting as getter to the function
 	string toString() const;
+	
 	void passTurn();
 	bool isCheck() const;
+
+	bool wouldMoveCauseCheck(Piece* p, int x, int y);
+
 };
 

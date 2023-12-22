@@ -19,6 +19,12 @@ int Piece::getY() const
     return _y;
 }
 
+void Piece::setPosition(int x, int y) 
+{
+    _x = x;
+    _y = y;
+}
+
 bool Piece::getColor() const
 {
     return _color;
@@ -41,8 +47,7 @@ bool Piece::move(int x, int y)
         _board[_x][_y] = nullptr;
 
         _board[x][y] = this;
-        _x = x;
-        _y = y;
+        setPosition(x, y);
         return true;
     }
     return false;

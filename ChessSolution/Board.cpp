@@ -88,7 +88,7 @@ bool Board::isCheck() const
 		{
 			if (_board[row][col] != nullptr && _board[row][col]->getColor() == threatColor) // picking up the enemy piexes
 			{
-				if (_board[row][col]->IsMovePossible(_kings[_turn]->getX(), _kings[_turn]->getY())) // if one  of the enemy's pieces can attack king 
+				if (_board[row][col]->IsMovePossible(_kings[_turn]->getX(), _kings[_turn]->getY(), true)) // if one  of the enemy's pieces can attack king 
 				{
 					return true;
 				}
@@ -96,6 +96,22 @@ bool Board::isCheck() const
 		}
 
 	}
-	return true;
+	return false;
+}
+
+bool Board::wouldMoveCauseCheck(Piece* p, int x, int y)
+{
+	Piece* replacedSquare = _board[x][y]; // saving the previous square content
+	_board[p->getX()][p->getY()]=nullptr;
+	_board[x][y] = p;
+	bool check = isCheck();
+
+	//returning the original board
+	_board[p->getX()][p->getY()] = p;
+	_board[x][y] = replacedSquare;
+	
+	return check;
+
+	
 }
 
