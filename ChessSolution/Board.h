@@ -22,11 +22,11 @@
 #define BISHOP 'b'
 
 
-
+# define BOARD_DIMENSION 8 
 
 
 using std::string;
-# define BOARD_DIMENSION 8 
+
 
 
 
@@ -45,6 +45,6 @@ public:
 	~Board();
 	Piece** operator[](int index); // acting as getter to the function
 	string toString() const;
-	
+	void passTurn();
 };
 

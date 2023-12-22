@@ -67,3 +67,8 @@ string Board::toString() const
 
 }
 
+void Board::passTurn()
+{
+	_turn = !_turn;
+}
+
