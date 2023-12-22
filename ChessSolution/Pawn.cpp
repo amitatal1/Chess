@@ -9,10 +9,10 @@ Pawn::~Pawn()
 {
 }
 
-bool Pawn::IsMovePossible(int x,int y)
+bool Pawn::IsMovePossible(int x,int y) const
 {
         
-        if (x >= BOARD_DIMENSION || y >= BOARD_DIMENSION) // out of bounds 
+        if (x < 0 || y < 0 || x >= BOARD_DIMENSION || y >= BOARD_DIMENSION) // out of bounds 
         {
             return false;
         }

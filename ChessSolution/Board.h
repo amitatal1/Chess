@@ -3,6 +3,7 @@
 #include "Pawn.h"
 
 #include <string>
+#include <vector>
 
 #define A 0
 #define B 1
@@ -21,8 +22,12 @@
 #define BISHOP 'b'
 
 
+
+
+
 using std::string;
 # define BOARD_DIMENSION 8 
+
 
 
 class Piece;
@@ -34,7 +39,7 @@ private:
 	bool _turn; // true for white's turn , false for black
 	bool _currentCheck;
 	Piece* _chosenPiece;
-
+	std::vector<Piece*> _kings;
 public:
 	Board();
 	~Board();
