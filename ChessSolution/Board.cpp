@@ -14,6 +14,23 @@ Board::Board()
 
 }
 
+Board::~Board()
+{
+	for(int row = 0; row < BOARD_DIMENSION; row++)
+	{
+		for (int col = A; col < BOARD_DIMENSION; col++)
+		{
+			if (_board[row][col] != nullptr)
+			{
+				delete(_board[row][col]);
+			}
+			
+		}
+		
+	}
+	_kings.clear();
+}
+
 
 
 Piece** Board::operator[](int index)

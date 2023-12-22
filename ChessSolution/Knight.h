@@ -3,7 +3,9 @@
 class Knight :
     public Piece
 {
-    Knight(char type, bool color, int x, int y, Board* board);
+public:
+    Knight(char type, bool color, int x, int y, Board& board);
     ~Knight();
+    virtual bool IsMovePossible(int x, int y) const override;
 };
 

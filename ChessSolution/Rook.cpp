@@ -9,9 +9,9 @@ Rook::~Rook()
 {
 }
 
-bool Rook::IsMovePossible(int x, int y)
+bool Rook::IsMovePossible(int x, int y) const
 {
-    if (x >= BOARD_DIMENSION || y >= BOARD_DIMENSION) // out of bounds 
+    if (x < 0 || y < 0 || x >= BOARD_DIMENSION || y >= BOARD_DIMENSION) // out of bounds 
     {
         return false;
     }
@@ -23,7 +23,7 @@ bool Rook::IsMovePossible(int x, int y)
     }
 
     
-    if (_board[x][y] == nullptr && (_x== x || _y == y) )// moving to the sided 
+    if (_x== x || _y == y )// moving to the sides vertically
     {
             return true;
     }
