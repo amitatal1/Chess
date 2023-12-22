@@ -1,18 +1,19 @@
 #include "Board.h"
-#define FIRST_ROW 0
+#define BLACK_FIRST_ROW 0
+#define WHITE_FIRST_ROW 0
+
 #define BLACK_PAWN_PLACEMENT 1
 #define WHITE_PAWN_PLACEMENT 6
-#define BLACK false
-#define WHITE true
+
 
 Board::Board()
-	: _turn(true), _currentCheck(false), _chosenPiece(nullptr)
+	: _turn(WHITE), _currentCheck(false), _chosenPiece(nullptr)
 {
 
 	for (int col = A; col < BOARD_DIMENSION; col++)
 	{
-		_board[BLACK_PAWN_PLACEMENT][col] = new Pawn('p', BLACK, BLACK_PAWN_PLACEMENT, col,*this); // black pawns line
-		_board[WHITE_PAWN_PLACEMENT][col] = new Pawn('p', WHITE, WHITE_PAWN_PLACEMENT, col,*this); // white pawns line
+		_board[BLACK_PAWN_PLACEMENT][col] = new Pawn(PAWN, BLACK, BLACK_PAWN_PLACEMENT, col,*this); // black pawns line
+		_board[WHITE_PAWN_PLACEMENT][col] = new Pawn(PAWN, WHITE, WHITE_PAWN_PLACEMENT, col,*this); // white pawns line
 	}
 
 
@@ -45,7 +46,7 @@ Piece** Board::operator[](int index)
 string Board::toString() const
 {
 	string boardString = "";
-	for (int row = FIRST_ROW; row < BOARD_DIMENSION; row++)
+	for (int row = BLACK_FIRST_ROW; row < BOARD_DIMENSION; row++)
 	{	
 		for (int col = A; col < BOARD_DIMENSION; col++)
 		{
@@ -74,5 +75,27 @@ string Board::toString() const
 void Board::passTurn()
 {
 	_turn = !_turn;
+}
+
+bool Board::isCheck() const
+{
+	bool threatColor = !_turn;
+
+	// loop through board
+	for (int row = BLACK_FIRST_ROW; row < BOARD_DIMENSION; row++)
+	{
+		for (int col = A; col < BOARD_DIMENSION; col++)
+		{
+			if (_board[row][col] != nullptr && _board[row][col]->getColor() == threatColor) // picking up the enemy piexes
+			{
+				if (_board[row][col]->IsMovePossible(_kings[_turn]->getX(), _kings[_turn]->getY())) // if one  of the enemy's pieces can attack king 
+				{
+					return true;
+				}
+			}
+		}
+
+	}
+	return true;
 }
 
