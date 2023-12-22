@@ -27,7 +27,7 @@ public:
 
 	bool getColor() const;
 	char getType() const;
-	virtual bool IsMovePossible(int x, int y, bool threatSearch = false) const =0 ; // checks if certain piece is able to go to move to a specific position 
+	virtual bool IsMovePossible(int x, int y, bool threatSearch = false)  =0 ; // checks if certain piece is able to go to move to a specific position 
 	bool move(int x, int y)  ; // changing the board 
 
 	
