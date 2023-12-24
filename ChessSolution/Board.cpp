@@ -2,8 +2,6 @@
 #define FIRST_ROW 0
 #define BLACK_PAWN_PLACEMENT 1
 #define WHITE_PAWN_PLACEMENT 6
-#define BLACK false
-#define WHITE true
 
 Board::Board()
 	: _turn(true), _currentCheck(false), _chosenPiece(nullptr)
