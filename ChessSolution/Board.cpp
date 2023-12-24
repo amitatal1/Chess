@@ -1,4 +1,11 @@
 #include "Board.h"
+#include "Pawn.h"
+#include "Rook.h"
+#include "Knight.h"
+#include "Bishop.h"
+#include "King.h"
+#include "Queen.h"
+
 #define BLACK_FIRST_ROW 0
 #define WHITE_FIRST_ROW 7
 
@@ -92,6 +99,7 @@ string Board::toString() const
 		boardString += "\n";
 	}
 
+	return boardString;
 }
 
 bool Board::getTurn() const
