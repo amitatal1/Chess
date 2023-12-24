@@ -1,6 +1,6 @@
 #include "Board.h"
 #define BLACK_FIRST_ROW 0
-#define WHITE_FIRST_ROW 0
+#define WHITE_FIRST_ROW 7
 
 #define BLACK_PAWN_PLACEMENT 1
 #define WHITE_PAWN_PLACEMENT 6
@@ -9,6 +9,25 @@
 Board::Board()
 	: _turn(WHITE), _currentCheck(false), _chosenPiece(nullptr)
 {
+	_board[BLACK_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, 0, *this);
+	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
+	_board[BLACK_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, 0, *this);
+	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
+
+	_board[BLACK_FIRST_ROW][A] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
+	_board[BLACK_FIRST_ROW][H] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
+	_board[BLACK_FIRST_ROW][A] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
+	_board[BLACK_FIRST_ROW][H] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
+
+	_board[BLACK_FIRST_ROW][A] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, 0, *this);
+	_board[BLACK_FIRST_ROW][H] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 2 - 1, *this);
+	_board[BLACK_FIRST_ROW][A] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, 0, *this);
+	_board[BLACK_FIRST_ROW][H] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 2 - 1, *this);
+
+	_board[BLACK_FIRST_ROW][A] = new King(KING, BLACK, BLACK_FIRST_ROW, 4, *this);
+	_board[BLACK_FIRST_ROW][H] = new Queen(QUEEN, BLACK, BLACK_FIRST_ROW, BOARD_DIMENSION - 4 - 1, *this);
+	_board[BLACK_FIRST_ROW][A] = new King(KING, WHITE, WHITE_FIRST_ROW, 4, *this);
+	_board[BLACK_FIRST_ROW][H] = new Queen(QUEEN, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 4 - 1, *this);
 
 	for (int col = A; col < BOARD_DIMENSION; col++)
 	{
