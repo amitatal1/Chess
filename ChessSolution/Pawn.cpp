@@ -9,7 +9,7 @@ Pawn::~Pawn()
 {
 }
 
-bool Pawn::IsMovePossible(int x,int y) const
+bool Pawn::IsMovePossible(int x,int y, bool threatSearch = false) 
 {
         
         if (x < 0 || y < 0 || x >= BOARD_DIMENSION || y >= BOARD_DIMENSION) // out of bounds 
@@ -20,6 +20,10 @@ bool Pawn::IsMovePossible(int x,int y) const
         if (_board[x][y] != nullptr && _board[x][y]->getColor() == _color)
         {
             // Destination is occupied by a piece of the same color
+            return false;
+        }
+        if (!threatSearch && _board.wouldMoveCauseCheck(this, x, y))
+        {
             return false;
         }
 
