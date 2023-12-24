@@ -8,21 +8,25 @@
 Board::Board()
 	: _turn(WHITE), _currentCheck(false), _chosenPiece(nullptr)
 {
+	//rooks
 	_board[BLACK_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, 0, *this);
 	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
 	_board[BLACK_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, 0, *this);
 	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
 
-	_board[BLACK_FIRST_ROW][A] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
+	//knight
+	_board[BLACK_FIRST_ROW][B] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
 	_board[BLACK_FIRST_ROW][H] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
 	_board[BLACK_FIRST_ROW][A] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
 	_board[BLACK_FIRST_ROW][H] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
 
+	//bishops
 	_board[BLACK_FIRST_ROW][A] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, 0, *this);
 	_board[BLACK_FIRST_ROW][H] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 2 - 1, *this);
 	_board[BLACK_FIRST_ROW][A] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, 0, *this);
 	_board[BLACK_FIRST_ROW][H] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 2 - 1, *this);
 
+	//quuens and kings
 	_board[BLACK_FIRST_ROW][A] = new King(KING, BLACK, BLACK_FIRST_ROW, 4, *this);
 	_board[BLACK_FIRST_ROW][H] = new Queen(QUEEN, BLACK, BLACK_FIRST_ROW, BOARD_DIMENSION - 4 - 1, *this);
 	_board[BLACK_FIRST_ROW][A] = new King(KING, WHITE, WHITE_FIRST_ROW, 4, *this);
@@ -88,6 +92,11 @@ string Board::toString() const
 		boardString += "\n";
 	}
 
+}
+
+bool Board::getTurn() const
+{
+	return _turn;
 }
 
 void Board::passTurn()
