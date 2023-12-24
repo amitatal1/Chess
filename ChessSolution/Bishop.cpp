@@ -1,6 +1,15 @@
 #include "Bishop.h"
 
-bool Bishop::IsMovePossible(int x, int y, bool threatSearch = false) 
+Bishop::Bishop(char type, bool color, int x, int y, Board& board)
+: Piece(type,color,x,y,board)
+{
+}
+
+Bishop::~Bishop()
+{
+}
+
+bool Bishop::IsMovePossible(int x, int y, bool threatSearch = false)
 {
     if (x < 0 || y < 0 || x >= BOARD_DIMENSION || y >= BOARD_DIMENSION) // out of bounds 
     {
@@ -17,7 +26,7 @@ bool Bishop::IsMovePossible(int x, int y, bool threatSearch = false)
         return false;
     }
  
-    if (_x - x == _y - y) // moving diagonaly
+    if (std::abs(_x - x) == std::abs(_y - y)) // moving diagonaly
     {
         return true;
     }

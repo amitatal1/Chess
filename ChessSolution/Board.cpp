@@ -5,7 +5,6 @@
 #define BLACK_PAWN_PLACEMENT 1
 #define WHITE_PAWN_PLACEMENT 6
 
-
 Board::Board()
 	: _turn(WHITE), _currentCheck(false), _chosenPiece(nullptr)
 {
