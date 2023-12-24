@@ -28,7 +28,7 @@ bool Rook::IsMovePossible(int x, int y, bool threatSearch = false)
     {
         return false;
     }
-    
+        
     if (_x== x || _y == y )// moving to the sides vertically
     {
         return true;
