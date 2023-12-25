@@ -6,6 +6,6 @@ class Knight :
 public:
     Knight(char type, bool color, int x, int y, Board& board);
     ~Knight();
-    virtual bool IsMovePossible(int x, int y, bool threatSearch = false)  override;
+    virtual bool IsMovePossible(int x, int y, bool threatSearch = false ) override  ;
 };
 

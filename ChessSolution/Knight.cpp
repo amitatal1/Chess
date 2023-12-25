@@ -11,7 +11,7 @@ Knight::~Knight()
 {
 }
 
-bool Knight::IsMovePossible(int x, int y, bool threatSearch = false) 
+bool Knight::IsMovePossible(int x, int y, bool threatSearch  )
 {
     if (x < 0 || y < 0 || x >= BOARD_DIMENSION || y >= BOARD_DIMENSION) // out of bounds
     {
