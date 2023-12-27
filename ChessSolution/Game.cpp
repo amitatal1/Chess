@@ -16,35 +16,35 @@ void Game::Run_Game()
 	}
 }
 
-void Game::MakeAjourney()
-{
-	
-	int piece_row =0 , piece_col=0, dest_row = 0 , dest_col =0 ;
-	bool triedOnce = false;
-	do
-	{
-		if (triedOnce) // first time was failure
-		{
-			cout << "Couldn't made this move... Try again!\n";
-		}
-		do
-		{
-			cout << "Enter square that contains your piece:" << std::endl << "Enter col and row in numbers please (1-8): " << std::endl;
+void Game::MakeAjourney() {
+    int piece_row, piece_col, dest_row, dest_col;
+    bool triedOnce = false;
 
-			cin >> piece_col >> piece_row;
-		}  // while valid choice wasn't made
-		while (piece_col < 1 || piece_row < 1 || piece_col > BOARD_DIMENSION || piece_row > BOARD_DIMENSION || _board[piece_row - 1][piece_col - 1] == nullptr || _board[piece_row - 1][piece_col - 1]->getColor() != _board.getTurn());
+    do {
+        if (triedOnce) {
+            std::cout << "Invalid move! Please try again.\n";
+        }
 
+        do {
+            std::cout << "Enter the coordinates of the piece you want to move (col row): ";
+            std::cin >> piece_col >> piece_row;
+            Piece* pi = _board[piece_row][piece_col];
 
-		do
-		{
-			cout << "Enter square that you want to move your piece into:" << std::endl << "Enter col and row in numbers please (1-8): " << std::endl;
+        } while (piece_col < 0 || piece_row <0  || piece_col >= BOARD_DIMENSION || piece_row >= BOARD_DIMENSION ||
+            _board[piece_row ][piece_col ] == nullptr ||
+            _board[piece_row ][piece_col ]->getColor() != _board.getTurn());
 
-			cin >> piece_col >> piece_row;
-		} while (dest_col < 1 || dest_row < 1 || dest_col > BOARD_DIMENSION || dest_row > BOARD_DIMENSION || _board[dest_row - 1][dest_col - 1] == nullptr || _board[dest_row - 1][dest_col - 1]->getColor() != _board.getTurn());
-		triedOnce = true;
-	} while (_board[dest_row - 1][dest_col - 1]->move(dest_row, dest_col));
+        do {
+            std::cout << "Enter the destination coordinates (col row): ";
+            std::cin >> dest_col >> dest_row;
+        } while (dest_col < 0 || dest_row < 0 || dest_col >= BOARD_DIMENSION || dest_row >= BOARD_DIMENSION);
 
-	_log += "(" + std::to_string(piece_col) + ',' + std::to_string(piece_row) + "):(" + std::to_string(dest_col) + "," + std::to_string(dest_row) + ")\n";
+        triedOnce = true;
+    } while (!_board[piece_row ][piece_col ]->move(dest_row, dest_col));
 
+    _log += "(" + std::to_string(piece_col) + ',' + std::to_string(piece_row) + "):(" +
+        std::to_string(dest_col) + "," + std::to_string(dest_row) + ")\n";
 }
+
+
+
