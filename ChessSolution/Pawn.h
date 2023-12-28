@@ -3,6 +3,9 @@
 class Pawn :
     public Piece
 {
+
+private:
+    bool _hasMoved;
 public:
     Pawn(char type, bool color, int x, int y, Board& board);
     ~Pawn();
