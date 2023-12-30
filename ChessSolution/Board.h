@@ -43,6 +43,7 @@ private:
 public:
 	Board();
 	~Board();
+	Piece* getPiece(int x, int y);
 	Piece** operator[](int index); // acting as getter to the function
 	string toString() const;
 	

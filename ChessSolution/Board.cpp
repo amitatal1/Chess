@@ -90,21 +90,18 @@ string Board::toString() const
 				if (_board[row][col]->getColor() == BLACK)
 				{
 					boardString += toupper(_board[row][col]->getType());
-					boardString += " ";
 				}
 					
 				else
 				{
 					boardString += _board[row][col]->getType();
-					boardString += " ";
 				}
 			}
 			else
 			{
-				boardString += "0 ";
+				boardString += "#";
 			}
 		}
-		boardString += "\n";
 	}
 
 	return boardString;

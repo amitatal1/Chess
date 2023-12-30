@@ -50,10 +50,9 @@ void main()
 	// YOUR CODE
 
 	Board gameBoard = Board();
-	std::cout << gameBoard.toString();
 	
 	char msgToGraphics[1024];
-	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
+	strcpy_s(msgToGraphics, (gameBoard.toString() + "1").c_str());
 
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
@@ -65,10 +64,11 @@ void main()
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
 		
-		int srcx = msgFromGraphics[0] - 'a';
-		int srcy = msgFromGraphics[1] - '1';
+		int srcy = msgFromGraphics[0] - 'a';
+		int srcx = msgFromGraphics[1] - '1';
 		int dstx = msgFromGraphics[2] - 'a';
 		int dsty = msgFromGraphics[3] - '1';
+		
 
 		Piece* squarePiece = gameBoard[srcx][srcy];
 		if (squarePiece != nullptr)
@@ -77,18 +77,18 @@ void main()
 			{
 				if (squarePiece->IsMovePossible(dstx, dsty))
 				{
-					strcpy_s(msgToGraphics, "1");
+					strcpy_s(msgToGraphics, "0");
 					gameBoard.passTurn();
 				}
 				else
 				{
-					strcpy_s(msgToGraphics, "0");
+					strcpy_s(msgToGraphics, "4");
 				}
 			}
 		}
 		else
 		{
-			strcpy_s(msgToGraphics, "0");
+			strcpy_s(msgToGraphics, "2");
 		}
 		
 
