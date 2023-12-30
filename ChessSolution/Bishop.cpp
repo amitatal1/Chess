@@ -21,6 +21,13 @@ bool Bishop::IsMovePossible(int x, int y, bool threatSearch)
         // Destination is occupied by a piece of the same color
         return false;
     }
+
+    if (!IsPathClear(x, y))
+    {
+        return false; // if path is occupied
+    }
+
+
     if (!threatSearch && _board.wouldMoveCauseCheck(this, x, y))
     {
         return false;
