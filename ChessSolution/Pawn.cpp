@@ -1,8 +1,9 @@
 #include "Pawn.h"
 
 Pawn::Pawn(char type, bool color, int x, int y, Board& board)
-	:Piece(type, color, x,y,board)
+	:Piece(type, color, x,y,board), _hasMoved(false)
 {
+
 }
 
 Pawn::~Pawn()
@@ -37,6 +38,20 @@ bool Pawn::IsMovePossible(int x,int y, bool threatSearch )
             {
                 return true;
             }
+            else if (_hasMoved == false && _board[x][y] == nullptr && _x + 2 == x && _y == y)
+            {
+                if (_board[x - 1][y]!=nullptr)
+                {
+                    return false; // piece  stands in his way
+                }
+
+                if (!threatSearch)
+                {
+                    _hasMoved = true;
+                }
+                return true;
+                
+            }
         }
 
         if (_color == WHITE)
@@ -48,6 +63,19 @@ bool Pawn::IsMovePossible(int x,int y, bool threatSearch )
             else if (_board[x][y] != nullptr && _x - 1 == x && (_y + 1 == y || _y - 1 == y)) // hitting option
             {
                 return true;
+            }
+            else if (_hasMoved == false && _board[x][y] == nullptr && _x - 2 == x && _y == y)
+            {
+                if (_board[x + 1][y] != nullptr)
+                {
+                    return false; // piece  stands in his way
+                }
+                if (!threatSearch)
+                {
+                    _hasMoved = true;
+                }
+                return true;
+
             }
         }       
         

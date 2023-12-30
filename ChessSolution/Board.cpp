@@ -7,6 +7,10 @@
 #include "Queen.h"
 #include <iostream>
 
+#define BLACK_KING 0
+#define WHITE_KING 1
+
+
 #define BLACK_FIRST_ROW 0
 #define WHITE_FIRST_ROW 7
 
@@ -16,30 +20,38 @@
 Board::Board()
 	: _turn(WHITE), _currentCheck(false), _chosenPiece(nullptr)
 {
-	_board[BLACK_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, 0, *this);
-	_board[WHITE_FIRST_ROW][A] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
-	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, 0, *this);
-	_board[WHITE_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
+	_board[BLACK_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, A, *this);
+	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - A - 1, *this);
+	_board[WHITE_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, A, *this);
+	_board[WHITE_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - A - 1, *this);
+	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
+	_board[BLACK_FIRST_ROW][B] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, B, *this);
+	_board[BLACK_FIRST_ROW][G] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - B - 1, *this);
+	_board[WHITE_FIRST_ROW][B] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, B, *this);
+	_board[WHITE_FIRST_ROW][G] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - B - 1, *this);
+	_board[BLACK_FIRST_ROW][A] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
+	_board[BLACK_FIRST_ROW][H] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
 
-	_board[BLACK_FIRST_ROW][B] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
-	_board[WHITE_FIRST_ROW][B] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
-	_board[BLACK_FIRST_ROW][G] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
-	_board[WHITE_FIRST_ROW][G] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
+	_board[BLACK_FIRST_ROW][C] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, C, *this);
+	_board[BLACK_FIRST_ROW][F] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - C - 1, *this);
+	_board[WHITE_FIRST_ROW][C] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, C, *this);
+	_board[WHITE_FIRST_ROW][F] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - C - 1, *this);
 
-	_board[BLACK_FIRST_ROW][C] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, 2, *this);
-	_board[WHITE_FIRST_ROW][C] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 2 - 1, *this);
-	_board[BLACK_FIRST_ROW][F] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, 2, *this);
-	_board[WHITE_FIRST_ROW][F] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 2 - 1, *this);
+	_board[BLACK_FIRST_ROW][D] = new King(KING, BLACK, BLACK_FIRST_ROW, D, *this);
+	_kings.push_back(_board[BLACK_FIRST_ROW][D]);
 
-	_board[BLACK_FIRST_ROW][D] = new King(KING, BLACK, BLACK_FIRST_ROW, 3, *this);
-	_board[BLACK_FIRST_ROW][E] = new Queen(QUEEN, BLACK, BLACK_FIRST_ROW, BOARD_DIMENSION - 3 - 1, *this);
-	_board[WHITE_FIRST_ROW][D] = new King(KING, WHITE, WHITE_FIRST_ROW, 3, *this);
-	_board[WHITE_FIRST_ROW][E] = new Queen(QUEEN, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 3 - 1, *this);
+	_board[BLACK_FIRST_ROW][E] = new Queen(QUEEN, BLACK, BLACK_FIRST_ROW, BOARD_DIMENSION - D - 1, *this);
+
+	_board[WHITE_FIRST_ROW][D] = new King(KING, WHITE, WHITE_FIRST_ROW, D, *this);
+	_board[WHITE_FIRST_ROW][E] = new Queen(QUEEN, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - D - 1, *this);
+	_board[BLACK_FIRST_ROW][H] = new Queen(QUEEN, BLACK, BLACK_FIRST_ROW, BOARD_DIMENSION - 4 - 1, *this);
+	_board[BLACK_FIRST_ROW][A] = new King(KING, WHITE, WHITE_FIRST_ROW, 4, *this);
+	_board[BLACK_FIRST_ROW][H] = new Queen(QUEEN, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 4 - 1, *this);
 
 	for (int col = A; col < BOARD_DIMENSION; col++)
 	{
-		_board[BLACK_PAWN_PLACEMENT][col] = new Pawn(PAWN, BLACK, BLACK_PAWN_PLACEMENT, col,*this); // black pawns line
-		_board[WHITE_PAWN_PLACEMENT][col] = new Pawn(PAWN, WHITE, WHITE_PAWN_PLACEMENT, col,*this); // white pawns line
+		_board[BLACK_PAWN_PLACEMENT][col] = new Pawn(PAWN, BLACK, BLACK_PAWN_PLACEMENT, col, *this); // black pawns line
+		_board[WHITE_PAWN_PLACEMENT][col] = new Pawn(PAWN, WHITE, WHITE_PAWN_PLACEMENT, col, *this); // white pawns line
 	}
 
 
@@ -114,6 +126,16 @@ void Board::passTurn()
 bool Board::isCheck() const
 {
 	bool threatColor = !_turn;
+	int kingIndex;
+	if (_turn == WHITE)
+	{
+		kingIndex = WHITE_KING;
+	}
+	else
+	{
+		kingIndex = BLACK_KING;
+	}
+	
 
 	// loop through board
 	for (int row = BLACK_FIRST_ROW; row < BOARD_DIMENSION; row++)
@@ -122,7 +144,7 @@ bool Board::isCheck() const
 		{
 			if (_board[row][col] != nullptr && _board[row][col]->getColor() == threatColor) // picking up the enemy piexes
 			{
-				if (_board[row][col]->IsMovePossible(_kings[_turn]->getX(), _kings[_turn]->getY(), true)) // if one  of the enemy's pieces can attack king 
+				if (_board[row][col]->IsMovePossible(_kings[kingIndex]->getX(), _kings[kingIndex]->getY(), true)) // if one  of the enemy's pieces can attack king 
 				{
 					return true;
 				}
