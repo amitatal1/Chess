@@ -5,6 +5,7 @@
 #include "Bishop.h"
 #include "King.h"
 #include "Queen.h"
+#include <iostream>
 
 #define BLACK_FIRST_ROW 0
 #define WHITE_FIRST_ROW 7
@@ -16,24 +17,24 @@ Board::Board()
 	: _turn(WHITE), _currentCheck(false), _chosenPiece(nullptr)
 {
 	_board[BLACK_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, 0, *this);
-	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
-	_board[BLACK_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, 0, *this);
-	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
+	_board[WHITE_FIRST_ROW][A] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
+	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, 0, *this);
+	_board[WHITE_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
 
-	_board[BLACK_FIRST_ROW][A] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
-	_board[BLACK_FIRST_ROW][H] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
-	_board[BLACK_FIRST_ROW][A] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
-	_board[BLACK_FIRST_ROW][H] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
+	_board[BLACK_FIRST_ROW][B] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
+	_board[WHITE_FIRST_ROW][B] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
+	_board[BLACK_FIRST_ROW][G] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
+	_board[WHITE_FIRST_ROW][G] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
 
-	_board[BLACK_FIRST_ROW][A] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, 0, *this);
-	_board[BLACK_FIRST_ROW][H] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 2 - 1, *this);
-	_board[BLACK_FIRST_ROW][A] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, 0, *this);
-	_board[BLACK_FIRST_ROW][H] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 2 - 1, *this);
+	_board[BLACK_FIRST_ROW][C] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, 2, *this);
+	_board[WHITE_FIRST_ROW][C] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 2 - 1, *this);
+	_board[BLACK_FIRST_ROW][F] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, 2, *this);
+	_board[WHITE_FIRST_ROW][F] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 2 - 1, *this);
 
-	_board[BLACK_FIRST_ROW][A] = new King(KING, BLACK, BLACK_FIRST_ROW, 4, *this);
-	_board[BLACK_FIRST_ROW][H] = new Queen(QUEEN, BLACK, BLACK_FIRST_ROW, BOARD_DIMENSION - 4 - 1, *this);
-	_board[BLACK_FIRST_ROW][A] = new King(KING, WHITE, WHITE_FIRST_ROW, 4, *this);
-	_board[BLACK_FIRST_ROW][H] = new Queen(QUEEN, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 4 - 1, *this);
+	_board[BLACK_FIRST_ROW][D] = new King(KING, BLACK, BLACK_FIRST_ROW, 3, *this);
+	_board[BLACK_FIRST_ROW][E] = new Queen(QUEEN, BLACK, BLACK_FIRST_ROW, BOARD_DIMENSION - 3 - 1, *this);
+	_board[WHITE_FIRST_ROW][D] = new King(KING, WHITE, WHITE_FIRST_ROW, 3, *this);
+	_board[WHITE_FIRST_ROW][E] = new Queen(QUEEN, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 3 - 1, *this);
 
 	for (int col = A; col < BOARD_DIMENSION; col++)
 	{
@@ -79,17 +80,19 @@ string Board::toString() const
 			{
 				if (_board[row][col]->getColor() == BLACK)
 				{
-					boardString += toupper(_board[row][col]->getType()) + " ";
+					boardString += toupper(_board[row][col]->getType());
+					boardString += " ";
 				}
 					
 				else
 				{
-					boardString += _board[row][col]->getType() + " ";
+					boardString += _board[row][col]->getType();
+					boardString += " ";
 				}
 			}
 			else
 			{
-				boardString +=   "0 ";
+				boardString += "0 ";
 			}
 		}
 		boardString += "\n";
