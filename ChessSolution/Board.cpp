@@ -21,32 +21,29 @@ Board::Board()
 	: _turn(WHITE), _currentCheck(false), _chosenPiece(nullptr)
 {
 	_board[BLACK_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, A, *this);
-	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - A - 1, *this);
-	_board[WHITE_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, A, *this);
-	_board[WHITE_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - A - 1, *this);
-	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 0 - 1, *this);
+	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, BLACK, WHITE_FIRST_ROW, BOARD_DIMENSION - A - 1, *this);
+	_board[WHITE_FIRST_ROW][H] = new Rook(ROOK, WHITE, BLACK_FIRST_ROW, A, *this);
+	_board[WHITE_FIRST_ROW][A] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - A - 1, *this);
+
 	_board[BLACK_FIRST_ROW][B] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, B, *this);
-	_board[BLACK_FIRST_ROW][G] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - B - 1, *this);
-	_board[WHITE_FIRST_ROW][B] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, B, *this);
-	_board[WHITE_FIRST_ROW][G] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - B - 1, *this);
-	_board[BLACK_FIRST_ROW][A] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, 1, *this);
-	_board[BLACK_FIRST_ROW][H] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 1 - 1, *this);
+	_board[BLACK_FIRST_ROW][G] = new Knight(KNIGHT, BLACK, WHITE_FIRST_ROW, BOARD_DIMENSION - B - 1, *this);
+	_board[WHITE_FIRST_ROW][G] = new Knight(KNIGHT, WHITE, BLACK_FIRST_ROW, B, *this);
+	_board[WHITE_FIRST_ROW][B] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - B - 1, *this);
+
+
 
 	_board[BLACK_FIRST_ROW][C] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, C, *this);
-	_board[BLACK_FIRST_ROW][F] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - C - 1, *this);
-	_board[WHITE_FIRST_ROW][C] = new Bishop(BISHOP, BLACK, BLACK_FIRST_ROW, C, *this);
+	_board[BLACK_FIRST_ROW][F] = new Bishop(BISHOP, BLACK, WHITE_FIRST_ROW, BOARD_DIMENSION - C - 1, *this);
+	_board[WHITE_FIRST_ROW][C] = new Bishop(BISHOP, WHITE, BLACK_FIRST_ROW, C, *this);
 	_board[WHITE_FIRST_ROW][F] = new Bishop(BISHOP, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - C - 1, *this);
 
 	_board[BLACK_FIRST_ROW][D] = new King(KING, BLACK, BLACK_FIRST_ROW, D, *this);
+	_board[WHITE_FIRST_ROW][D] = new King(KING, WHITE, WHITE_FIRST_ROW, D, *this);
 	_kings.push_back(_board[BLACK_FIRST_ROW][D]);
+	_kings.push_back(_board[WHITE_FIRST_ROW][D]);
 
 	_board[BLACK_FIRST_ROW][E] = new Queen(QUEEN, BLACK, BLACK_FIRST_ROW, BOARD_DIMENSION - D - 1, *this);
-
-	_board[WHITE_FIRST_ROW][D] = new King(KING, WHITE, WHITE_FIRST_ROW, D, *this);
 	_board[WHITE_FIRST_ROW][E] = new Queen(QUEEN, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - D - 1, *this);
-	_board[BLACK_FIRST_ROW][H] = new Queen(QUEEN, BLACK, BLACK_FIRST_ROW, BOARD_DIMENSION - 4 - 1, *this);
-	_board[BLACK_FIRST_ROW][A] = new King(KING, WHITE, WHITE_FIRST_ROW, 4, *this);
-	_board[BLACK_FIRST_ROW][H] = new Queen(QUEEN, WHITE, WHITE_FIRST_ROW, BOARD_DIMENSION - 4 - 1, *this);
 
 	for (int col = A; col < BOARD_DIMENSION; col++)
 	{

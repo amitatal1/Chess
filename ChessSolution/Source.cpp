@@ -46,12 +46,15 @@ void main()
 	}
 	
 
-	char msgToGraphics[1024];
 	// msgToGraphics should contain the board string accord the protocol
 	// YOUR CODE
 
-	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1"); // just example...
+	Board gameBoard = Board();
+	std::cout << gameBoard.toString();
 	
+	char msgToGraphics[1024];
+	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
+
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
 	// get message from graphics
@@ -62,14 +65,39 @@ void main()
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
 		
-		// YOUR CODE
-		strcpy_s(msgToGraphics, "YOUR CODE"); // msgToGraphics should contain the result of the operation
+		int srcx = msgFromGraphics[0] - 'a';
+		int srcy = msgFromGraphics[1] - '1';
+		int dstx = msgFromGraphics[2] - 'a';
+		int dsty = msgFromGraphics[3] - '1';
 
-		/******* JUST FOR EREZ DEBUGGING ******/
-		int r = rand() % 10; // just for debugging......
-		msgToGraphics[0] = (char)(1 + '0');
-		msgToGraphics[1] = 0;
-		/******* JUST FOR EREZ DEBUGGING ******/
+		Piece* squarePiece = gameBoard[srcx][srcy];
+		if (squarePiece != nullptr)
+		{
+			if (squarePiece->getColor() == gameBoard.getTurn())
+			{
+				if (squarePiece->IsMovePossible(dstx, dsty))
+				{
+					strcpy_s(msgToGraphics, "1");
+					gameBoard.passTurn();
+				}
+				else
+				{
+					strcpy_s(msgToGraphics, "0");
+				}
+			}
+		}
+		else
+		{
+			strcpy_s(msgToGraphics, "0");
+		}
+		
+
+
+//		/******* JUST FOR EREZ DEBUGGING ******/
+//		int r = rand() % 10; // just for debugging......
+//		msgToGraphics[0] = (char)(1 + '0');
+//		msgToGraphics[1] = 0;
+//		/******* JUST FOR EREZ DEBUGGING ******/
 
 
 		// return result to graphics		
