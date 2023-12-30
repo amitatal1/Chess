@@ -9,7 +9,7 @@ void Game::Run_Game()
 	while (true)
 	{
 		
-		cout << _board.toString();
+		std::cout << _board.toString();
 		MakeAjourney();
 		_board.passTurn();
 

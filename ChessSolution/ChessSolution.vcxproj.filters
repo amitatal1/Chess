@@ -42,7 +42,7 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="קבצים נלווים\Pipe.h">
+    <ClInclude Include="קבצים נלווים\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
