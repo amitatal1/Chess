@@ -48,10 +48,10 @@ void main()
 
 	// msgToGraphics should contain the board string accord the protocol
 	// YOUR CODE
-
+	
 	Board gameBoard = Board();
 	std::cout << gameBoard.toString();
-	
+	Piece* a= gameBoard[0][0];
 	char msgToGraphics[1024];
 	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
 

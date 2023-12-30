@@ -23,6 +23,11 @@ bool Queen::IsMovePossible(int x, int y, bool threatSearch)
         return false;
     }
 
+    if (!IsPathClear(x, y))
+    {
+        return false; // if path is occupied
+    }
+
     if (!threatSearch && _board.wouldMoveCauseCheck(this, x, y))
     {
         return false;
