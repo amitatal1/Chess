@@ -19,7 +19,7 @@
 #define WHITE_PAWN_PLACEMENT 6
 
 Board::Board()
-	: _turn(BLACK), _currentCheck(false), _chosenPiece(nullptr)
+	: _turn(BLACK)
 {
 	_board[BLACK_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, A, *this);
 	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, H, *this);
@@ -154,12 +154,16 @@ bool Board::isCheck() const
 
 bool Board::wouldMoveCauseCheck(Piece* p, int x, int y)
 {
+	int replacedX = p->getX();
+	int replacedY =  p->getY();
 	Piece* replacedSquare = _board[x][y]; // saving the previous square content
 	_board[p->getX()][p->getY()]=nullptr;
 	_board[x][y] = p;
+	p->setPosition(x, y);
 	bool check = isCheck();
 
 	//returning the original board
+	p->setPosition(replacedX, replacedY);
 	_board[p->getX()][p->getY()] = p;
 	_board[x][y] = replacedSquare;
 	

@@ -37,8 +37,7 @@ class Board
 private:
 	Piece* _board[BOARD_DIMENSION][BOARD_DIMENSION];
 	bool _turn; // true for white's turn , false for black
-	bool _currentCheck;
-	Piece* _chosenPiece;
+
 	std::vector<Piece*> _kings;
 public:
 	Board();
