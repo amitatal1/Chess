@@ -23,13 +23,13 @@ Board::Board()
 {
 	_board[BLACK_FIRST_ROW][A] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, A, *this);
 	_board[BLACK_FIRST_ROW][H] = new Rook(ROOK, BLACK, BLACK_FIRST_ROW, H, *this);
-	_board[WHITE_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, A, *this);
-	_board[WHITE_FIRST_ROW][A] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, H, *this);
+	_board[WHITE_FIRST_ROW][A] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, A, *this);
+	_board[WHITE_FIRST_ROW][H] = new Rook(ROOK, WHITE, WHITE_FIRST_ROW, H, *this);
 
 	_board[BLACK_FIRST_ROW][B] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, B, *this);
 	_board[BLACK_FIRST_ROW][G] = new Knight(KNIGHT, BLACK, BLACK_FIRST_ROW, G, *this);
-	_board[WHITE_FIRST_ROW][G] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, B, *this);
-	_board[WHITE_FIRST_ROW][B] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, G, *this);
+	_board[WHITE_FIRST_ROW][G] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, G, *this);
+	_board[WHITE_FIRST_ROW][B] = new Knight(KNIGHT, WHITE, WHITE_FIRST_ROW, B, *this);
 
 
 

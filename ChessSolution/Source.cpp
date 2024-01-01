@@ -63,7 +63,7 @@ void main()
 	{
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
-		
+		std::cout << msgFromGraphics << std::endl;
 		int srcy = msgFromGraphics[0] - 'a';
 		int srcx = msgFromGraphics[1] - '1';
 		int dsty = msgFromGraphics[2] - 'a';
@@ -71,12 +71,12 @@ void main()
 		
 
 		Piece* squarePiece = gameBoard[srcx][srcy];
-		if (squarePiece != nullptr)
+		if (squarePiece != nullptr && squarePiece->getColor() == gameBoard.getTurn())
 		{
-			if (squarePiece->getColor() == gameBoard.getTurn())
-			{
-				if (squarePiece->IsMovePossible(dstx, dsty))
+			
+				if (squarePiece->move(dstx, dsty))
 				{
+					
 					strcpy_s(msgToGraphics, "0");
 					gameBoard.passTurn();
 				}
@@ -84,7 +84,7 @@ void main()
 				{
 					strcpy_s(msgToGraphics, "4");
 				}
-			}
+			
 		}
 		else
 		{
