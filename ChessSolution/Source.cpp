@@ -66,8 +66,8 @@ void main()
 		
 		int srcy = msgFromGraphics[0] - 'a';
 		int srcx = msgFromGraphics[1] - '1';
-		int dstx = msgFromGraphics[2] - 'a';
-		int dsty = msgFromGraphics[3] - '1';
+		int dsty = msgFromGraphics[2] - 'a';
+		int dstx = msgFromGraphics[3] - '1';
 		
 
 		Piece* squarePiece = gameBoard[srcx][srcy];
