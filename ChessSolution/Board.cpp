@@ -108,6 +108,11 @@ string Board::toString() const
 	return boardString;
 }
 
+string Board::getStatus() const
+{
+	return _status;
+}
+
 bool Board::getTurn() const
 {
 	return _turn;
