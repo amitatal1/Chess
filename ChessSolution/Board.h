@@ -5,6 +5,16 @@
 #include <string>
 #include <vector>
 
+#define	LEGAL_MOVE "0"
+#define	CHECK "1"
+#define	NOT_PLAYER_SOURCE "2"
+#define	OCCUPIED_DESTINY "3"
+#define	SELF_CHECK "4"
+#define	OUT_OF_BORDER "5"
+#define	ILLEGAL_MOVE "6"
+#define	DESTINY_IS_SOURCE "7"
+#define	MATE "8"
+
 #define A 0
 #define B 1
 #define C 2
@@ -46,6 +56,7 @@ public:
 	Piece** operator[](int index); // acting as getter to the function
 	string toString() const;
 	string getStatus() const;
+	void setStatus(const std::string& status);
 	bool getTurn() const;
 	void passTurn();
 	bool isCheck() const;

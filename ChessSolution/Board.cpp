@@ -11,7 +11,6 @@
 #define BLACK_KING 0
 #define WHITE_KING 1
 
-
 #define BLACK_FIRST_ROW 0
 #define WHITE_FIRST_ROW 7
 
@@ -111,6 +110,11 @@ string Board::toString() const
 string Board::getStatus() const
 {
 	return _status;
+}
+
+void Board::setStatus(const std::string& status)
+{
+	_status = status;
 }
 
 bool Board::getTurn() const
