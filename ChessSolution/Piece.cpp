@@ -1,5 +1,8 @@
 #include "Piece.h"
 
+
+
+
 Piece::Piece(char type, bool color,int x, int y,Board& board)
     : _x(x), _y(y), _board(board), _color(color), _type(type)
 {
@@ -35,12 +38,14 @@ char Piece::getType() const
     return _type;
 }
 
-bool Piece::IsPathClear(int destX, int destY) {
+bool Piece::IsPathClear(int destX, int destY) 
+{
     //Calculate the direction of movement
     int deltaX=0, deltaY=0;
 
     //x direction
-    if (destX > _x) {
+    if (destX > _x) 
+    {
         deltaX = 1;
     }
     else if (destX < _x) {

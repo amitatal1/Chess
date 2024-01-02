@@ -12,7 +12,7 @@ Pawn::~Pawn()
 
 bool Pawn::IsMovePossible(int x,int y, bool threatSearch ) 
 {
-        
+        bool possibility = false;
         if (x < 0 || y < 0 || x >= BOARD_DIMENSION || y >= BOARD_DIMENSION) // out of bounds 
         {
             return false;
@@ -32,11 +32,11 @@ bool Pawn::IsMovePossible(int x,int y, bool threatSearch )
         {
             if (_board[x][y] == nullptr && _x + 1 == x && _y == y) // moving forward
             {
-                return true;
+                possibility= true;
             }
             else if (_board[x][y] != nullptr && _x + 1 == x && (_y + 1 == y || _y - 1 == y)) // hitting option
             {
-                return true;
+                possibility = true;
             }
             else if (_hasMoved == false && _board[x][y] == nullptr && _x + 2 == x && _y == y)
             {
@@ -45,24 +45,21 @@ bool Pawn::IsMovePossible(int x,int y, bool threatSearch )
                     return false; // piece  stands in his way
                 }
 
-                if (!threatSearch)
-                {
-                    _hasMoved = true;
-                }
-                return true;
+                
+                possibility = true;
                 
             }
         }
 
-        if (_color == WHITE)
+        else if (_color == WHITE)
         {
             if (_board[x][y] == nullptr && _x - 1 == x && _y == y) // moving forward
             {
-                return true;
+                possibility = true;
             }
             else if (_board[x][y] != nullptr && _x - 1 == x && (_y + 1 == y || _y - 1 == y)) // hitting option
             {
-                return true;
+                possibility = true;
             }
             else if (_hasMoved == false && _board[x][y] == nullptr && _x - 2 == x && _y == y)
             {
@@ -70,16 +67,17 @@ bool Pawn::IsMovePossible(int x,int y, bool threatSearch )
                 {
                     return false; // piece  stands in his way
                 }
-                if (!threatSearch)
-                {
-                    _hasMoved = true;
-                }
-                return true;
+              
+                possibility = true;
 
             }
         }       
         
-        return false;
+        if (possibility && !threatSearch) // moving for the first time disables his ability to double-step
+        {
+            _hasMoved = true;
+        }
+        return possibility;
     
 	}
 
