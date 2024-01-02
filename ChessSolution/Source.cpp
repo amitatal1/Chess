@@ -73,32 +73,24 @@ void main()
 		Piece* squarePiece = gameBoard[srcx][srcy];
 		if (!(srcx == dstx && srcy == dsty))
 		{
-			if (squarePiece != nullptr)
+			if (squarePiece != nullptr && squarePiece->getColor() == gameBoard.getTurn())
 			{
-				if (squarePiece->getColor() == gameBoard.getTurn())
+				if (squarePiece->move(dstx, dsty))
 				{
-					if (squarePiece->move(dstx, dsty))
+					gameBoard.passTurn();
+					if (gameBoard.isCheck())
 					{
-						gameBoard.passTurn();
-						if (gameBoard.isCheck())
-						{
-							status = CHECK;
-						}
-						else
-						{
-							status = LEGAL_MOVE;
-						}
-						strcpy_s(msgToGraphics, status.c_str());
+						status = CHECK;
 					}
 					else
 					{
-						strcpy_s(msgToGraphics, gameBoard.getStatus().c_str());
+						status = LEGAL_MOVE;
 					}
+					strcpy_s(msgToGraphics, status.c_str());
 				}
 				else
 				{
-					status = OCCUPIED_DESTINY;
-					strcpy_s(msgToGraphics, status.c_str());
+					strcpy_s(msgToGraphics, gameBoard.getStatus().c_str());
 				}
 			}
 			else
