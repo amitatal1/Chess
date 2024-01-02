@@ -77,12 +77,12 @@ void main()
 				if (squarePiece->move(dstx, dsty))
 				{
 					
-					strcpy_s(msgToGraphics, "0");
+					strcpy_s(msgToGraphics, gameBoard.getStatus().c_str());
 					gameBoard.passTurn();
 				}
 				else
 				{
-					strcpy_s(msgToGraphics, "4");
+					strcpy_s(msgToGraphics, gameBoard.getStatus().c_str());
 				}
 			
 		}
