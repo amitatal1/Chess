@@ -69,31 +69,48 @@ void main()
 		int dsty = msgFromGraphics[2] - 'a';
 		int dstx = msgFromGraphics[3] - '1';
 		
-
+		string status = gameBoard.getStatus();
 		Piece* squarePiece = gameBoard[srcx][srcy];
-		if (squarePiece != nullptr && squarePiece->getColor() == gameBoard.getTurn())
+		if (!(srcx == dstx && srcy == dsty))
 		{
-			
-				if (squarePiece->move(dstx, dsty))
+			if (squarePiece != nullptr)
+			{
+				if (squarePiece->getColor() == gameBoard.getTurn())
 				{
-					string status = gameBoard.getStatus();
-					gameBoard.passTurn();
-					if (gameBoard.isCheck())
+					if (squarePiece->move(dstx, dsty))
 					{
-						status = "1";
+						gameBoard.passTurn();
+						if (gameBoard.isCheck())
+						{
+							status = CHECK;
+						}
+						else
+						{
+							status = LEGAL_MOVE;
+						}
+						strcpy_s(msgToGraphics, status.c_str());
 					}
-					strcpy_s(msgToGraphics, "0");//gameBoard.getStatus().c_str());
-					
+					else
+					{
+						strcpy_s(msgToGraphics, gameBoard.getStatus().c_str());
+					}
 				}
 				else
 				{
-					strcpy_s(msgToGraphics, gameBoard.getStatus().c_str());
+					status = OCCUPIED_DESTINY;
+					strcpy_s(msgToGraphics, status.c_str());
 				}
-			
+			}
+			else
+			{
+				status = NOT_PLAYER_SOURCE;
+				strcpy_s(msgToGraphics, status.c_str());
+			}
 		}
 		else
 		{
-			strcpy_s(msgToGraphics, "2");
+			status = DESTINY_IS_SOURCE;
+			strcpy_s(msgToGraphics, status.c_str());
 		}
 		
 

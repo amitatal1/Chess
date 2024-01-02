@@ -15,16 +15,19 @@ bool Pawn::IsMovePossible(int x,int y, bool threatSearch )
         bool possibility = false;
         if (x < 0 || y < 0 || x >= BOARD_DIMENSION || y >= BOARD_DIMENSION) // out of bounds 
         {
+            _board.setStatus(OUT_OF_BORDER);
             return false;
         }
 
         if (_board[x][y] != nullptr && _board[x][y]->getColor() == _color)
         {
             // Destination is occupied by a piece of the same color
+            _board.setStatus(OCCUPIED_DESTINY);
             return false;
         }
         if (!threatSearch && _board.wouldMoveCauseCheck(this, x, y))
         {
+            _board.setStatus(SELF_CHECK);
             return false;
         }
 
@@ -42,6 +45,7 @@ bool Pawn::IsMovePossible(int x,int y, bool threatSearch )
             {
                 if (_board[x - 1][y]!=nullptr)
                 {
+                    _board.setStatus(OCCUPIED_DESTINY);
                     return false; // piece  stands in his way
                 }
 
@@ -65,6 +69,7 @@ bool Pawn::IsMovePossible(int x,int y, bool threatSearch )
             {
                 if (_board[x + 1][y] != nullptr)
                 {
+                    _board.setStatus(OCCUPIED_DESTINY);
                     return false; // piece  stands in his way
                 }
               
