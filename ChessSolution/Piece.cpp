@@ -80,7 +80,7 @@ bool Piece::move(int x, int y)
     {
         if (_board[x][y] != nullptr) //hit
         {
-            delete(_board[_x][_y]);
+            delete(_board[x][y]);
         }
 
         _board[_x][_y] = nullptr;
